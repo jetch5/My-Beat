@@ -1,2 +1,2 @@
 # My-Beat
-The only thing that sucks worse than git is intelliJ and maybe gradle
+What do you expect for a 3 year old video?
