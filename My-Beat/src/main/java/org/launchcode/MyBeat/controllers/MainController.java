@@ -1,6 +1,7 @@
 package org.launchcode.MyBeat.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class MainController {
 
     @RequestMapping(value = "")
-    public String index() {
+    public String index(Model model) {
         return "index";
 
     }
