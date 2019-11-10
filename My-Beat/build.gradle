@@ -18,7 +18,7 @@ configurations {
 repositories {
 	mavenCentral()
 }
-
+// Spring security commented out due to utilization issues
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-freemarker'
 //	implementation 'org.springframework.boot:spring-boot-starter-security'
@@ -38,6 +38,7 @@ test {
 	useJUnitPlatform()
 }
 
+//updated from addResources = true due to new Spring Boot version
 bootRun {
-	addResources = true
+	sourceResources sourceSets.main
 }

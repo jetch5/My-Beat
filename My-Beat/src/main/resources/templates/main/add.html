@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://thymeleaf.org/ ">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${title}">Title</title>
+</head>
+<body>
+<h1 th:text="${title}">Default Title</h1>
+
+<form method="post">
+    <input type="text" name="storyName"/>
+    <input type="submit" value="Add Story"/>
+
+</form>
+
+</body>
+</html>
