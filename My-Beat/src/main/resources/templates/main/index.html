@@ -9,11 +9,19 @@
 
 <p th:unless="${stories} and ${stories.size()}">No Stories</p>
 
+<table class="table">
 
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+    </tr>
 
-<ul>
-    <li th:each="iterator_variable : ${stories}" th:text="${iterator_variable}"></li>
-</ul>
+    <tr th:each="iterator_variable : ${stories}">
+        <td th:text="${iterator_variable.name}"></td>
+        <td th:text="${iterator_variable.description}"></td>
+</tr>
+
+</table>
 
 </body>
 </html>
