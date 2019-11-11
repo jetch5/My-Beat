@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://thymeleaf.org/ ">
-<head>
-    <meta charset="UTF-8"/>
-    <title th:text="${title}">Title</title>
-</head>
-<body>
+<head th:replace="fragments :: head"></head>
+<body class="container">
 <h1 th:text="${title}">Default Title</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
 
 <p th:unless="${stories} and ${stories.size()}">No Stories</p>
 
-<a href="/main/add">Add Story</a>
+
 
 <ul>
     <li th:each="iterator_variable : ${stories}" th:text="${iterator_variable}"></li>
