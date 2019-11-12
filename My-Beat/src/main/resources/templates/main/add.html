@@ -1,15 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://thymeleaf.org/ ">
-<head>
-    <meta charset="UTF-8"/>
-    <title th:text="${title}">Title</title>
-</head>
-<body>
+
+<head th:replace="fragments :: head"></head>
+
+<body class="container">
 <h1 th:text="${title}">Default Title</h1>
 
-<form method="post">
-    <input type="text" name="storyName"/>
+<nav th:replace="fragments :: navigation"></nav>
+
+<form method="post" style="max-width:600px;" th:object="${story}">
+    <div class="form-group">
+        <label th:for="name">Title</label>
+        <input class="form-control" th:field="*{name}" />
+        <span th:errors="*{name}" class="error"></span>
+    </div>
+
+    <div class="form-group">
+        <label th:for="description">Description</label>
+        <input class="form-control" th:field="*{description}" />
+        <span th:errors="*{description}" class="error"></span>
+    </div>
+
     <input type="submit" value="Add Story"/>
 
 </form>
