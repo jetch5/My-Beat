@@ -1,7 +1,8 @@
 package org.launchcode.MyBeat.controllers;
 
 import org.launchcode.MyBeat.models.Story;
-import org.launchcode.MyBeat.models.StoryData;
+import org.launchcode.MyBeat.models.data.StoryDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -17,11 +18,17 @@ import javax.validation.Valid;
 @RequestMapping("main")
 public class StoryController {
 
+    // 2 pieces of Spring magic - no class needed to implement
+    // Story Dao interface & autowired gives an instance of the
+    // class by the framework (no constructor or passed in)
+    @Autowired
+    private StoryDao storyDao;
+
     //Request path: /main
     @RequestMapping(value = "")
     public String index(Model model) {
-
-        model.addAttribute("stories", StoryData.getAll());
+        // return an iterable
+        model.addAttribute("stories", storyDao.findAll());
         model.addAttribute("title", "Home Page");
         return "main/index";
 
@@ -41,13 +48,13 @@ public class StoryController {
             return "main/add";
         }
 
-        StoryData.add(newStory);
+        storyDao.save(newStory);
         return "redirect:";
     }
 
     @RequestMapping(value = "remove", method = RequestMethod.GET)
     public String displayRemoveStoryForm(Model model) {
-        model.addAttribute("stories", StoryData.getAll());
+        model.addAttribute("stories", storyDao.findAll());
         model.addAttribute("title", "Remove Story");
         return "main/remove";
     }
@@ -56,7 +63,9 @@ public class StoryController {
     public String processRemoveStoryForm(@RequestParam int[] storyIds) {
 
         for (int storyId : storyIds) {
-            StoryData.remove(storyId);
+            // delete would not work here
+            // had to deleteById
+            storyDao.deleteById(storyId);
         }
 
         return "redirect:";

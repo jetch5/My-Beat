@@ -3,19 +3,22 @@
       xsi:schemaLocation="http://thymeleaf.org/ ">
 
 <head th:replace="fragments :: head"></head>
-
+<br />
 <body class="container">
 <h1 th:text="${title}">Default Title</h1>
-
+<br />
 <nav th:replace="fragments :: navigation"></nav>
+<hr />
+
+<p th:unless="${stories} and ${stories.size()}">No Stories</p>
 
 <form method="post">
     <div th:each="story : ${stories}" class="checkbox">
-        <input type="checkbox" name="storyIds" th:value="${story.storyId}" th:id="${story.storyId}" />
-        <label th:for="${story.storyId}" th:text="${story.name}" ></label>
+        <input type="checkbox" name="storyIds" th:value="${story.Id}" th:id="${story.Id}" />
+        <label th:for="${story.Id}" th:text="${story.name}" ></label>
         <br />
     </div>
-
+<hr />
     <input type="submit" value="Remove Story"/>
 
 </form>

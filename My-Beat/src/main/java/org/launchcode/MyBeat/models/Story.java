@@ -1,9 +1,22 @@
 package org.launchcode.MyBeat.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+// spring boot flag that you want to story this class in
+// a database - every field/property within the class
+// will be stored in the database unless you specify otherwise.
+// name & description stored in a table associated with this class
+@Entity
 public class Story {
+
+    // create the primary key
+    @Id
+    @GeneratedValue
+    private int id;
 
     @NotNull
     @Size(min=3, max=15)
@@ -13,26 +26,20 @@ public class Story {
     @Size(min=1, message = "Must describe your story!")
     private String description;
 
-    private int storyId;
-    private static int nextId = 1;
+    //private StoryType type;
 
-    public Story(String name, String description) {
-        this();
+    public Story(int id, String name, String description) {
+        this.id = id;
         this.name = name;
         this.description = description;
     }
 
-    public Story() {
-        storyId = nextId;
-        nextId++;
-    }
+    public Story() { }
 
-    public int getStoryId() {
-        return storyId;
-    }
-
-    public void setStoryId(int storyId) {
-        this.storyId = storyId;
+    // no setter because ID should not be able to be changed
+    // outside of this class
+    public int getId() {
+        return id;
     }
 
     public String getName() {
